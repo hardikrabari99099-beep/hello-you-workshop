@@ -1,6 +1,7 @@
 # IndiFunded roadmap (from feature spec)
 - [x] Public: How It Works, Trust Center, Verify Payout, Privacy/Terms/Refund/Risk, Forgot/Reset password
-- [x] Purple brand theme; Trader Stories with admin approval
+- [x] Original green theme kept; Trader Stories with admin approval
+- [ ] FundedNext-style redesign (keep green)
 - [ ] Public: Support Center, per-challenge detail pages
 - [ ] Challenge automation: account ID/credentials, email delivery, progress + pass/fail evaluation
 - [ ] Trader dashboard: terminal, trade book, positions, risk management
