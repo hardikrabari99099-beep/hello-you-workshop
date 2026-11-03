@@ -70,7 +70,7 @@ export default function ClientReviews() {
   }
   const columns = [0, 1, 2].map(c => {
     const own = tiles.filter((_, i) => i % 3 === c);
-    return own.length ? own : tiles;
+    return own.length >= 2 ? own : [...tiles.slice(c), ...tiles.slice(0, c)];
   });
   const open = item => { setFailed(false); setActive(item); };
 
