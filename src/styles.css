@@ -347,13 +347,13 @@ input, textarea, select { color-scheme: dark; }
 .orb-1 {
   width: 220px; height: 220px;
   right: 8%; top: 12%;
-  background: radial-gradient(circle at 30% 30%, rgba(41,211,154,0.55), rgba(41,211,154,0.05) 60%, transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.55), rgba(124,58,237,0.05) 60%, transparent 70%);
   animation: orb-float-a 14s ease-in-out infinite;
 }
 .orb-2 {
   width: 160px; height: 160px;
   left: 6%; top: 60%;
-  background: radial-gradient(circle at 40% 40%, rgba(126, 232, 202, 0.45), rgba(41,211,154,0.05) 65%, transparent 75%);
+  background: radial-gradient(circle at 40% 40%, rgba(167,139,250, 0.45), rgba(124,58,237,0.05) 65%, transparent 75%);
   animation: orb-float-b 18s ease-in-out infinite;
 }
 .orb-3 {
@@ -393,12 +393,12 @@ input, textarea, select { color-scheme: dark; }
   display: flex; align-items: center; justify-content: center;
   font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   font-weight: 700; font-size: 34px;
-  background: radial-gradient(circle at 30% 25%, #4be0aa 0%, #29d39a 40%, #0f8a5e 100%);
-  color: #041b13;
+  background: radial-gradient(circle at 30% 25%, #b794ff 0%, #7c3aed 40%, #4c1d95 100%);
+  color: #ffffff;
   box-shadow:
     inset 0 6px 12px rgba(255,255,255,0.35),
     inset 0 -8px 14px rgba(0,0,0,0.35),
-    0 20px 40px -14px rgba(41,211,154,0.55);
+    0 20px 40px -14px rgba(124,58,237,0.55);
   border: 2px solid rgba(255,255,255,0.15);
 }
 .coin-3d .face.back { transform: rotateY(180deg); }
@@ -421,7 +421,7 @@ input, textarea, select { color-scheme: dark; }
 }
 .tilt-3d:hover {
   transform: perspective(1100px) rotateX(4deg) rotateY(-6deg) translateY(-6px);
-  box-shadow: 0 30px 60px -25px rgba(0,0,0,0.6), 0 0 0 1px rgba(41,211,154,0.25);
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.25);
 }
 .tilt-3d > * { transform: translateZ(0); }
 
@@ -445,8 +445,8 @@ input, textarea, select { color-scheme: dark; }
 /* Number counter glow pulse for stats */
 .pulse-accent { animation: pulse-accent 3.5s ease-in-out infinite; }
 @keyframes pulse-accent {
-  0%,100% { text-shadow: 0 0 0 rgba(41,211,154,0); }
-  50%     { text-shadow: 0 0 32px rgba(41,211,154,0.6); }
+  0%,100% { text-shadow: 0 0 0 rgba(124,58,237,0); }
+  50%     { text-shadow: 0 0 32px rgba(124,58,237,0.6); }
 }
 
 /* Certificate slide — add subtle floating on active slide */
@@ -577,10 +577,10 @@ input, textarea, select { color-scheme: dark; }
 }
 .glass-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(41,211,154,0.35);
+  border-color: rgba(124,58,237,0.35);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.14),
-    0 20px 56px -22px rgba(41,211,154,0.28),
+    0 20px 56px -22px rgba(124,58,237,0.28),
     0 0 0 1px rgba(124,58,237,0.2);
 }
 
@@ -601,12 +601,12 @@ input, textarea, select { color-scheme: dark; }
 }
 .page-bg-3d .pb-orb-1 {
   width: 520px; height: 520px; right: -120px; top: -140px;
-  background: radial-gradient(circle at 30% 30%, rgba(41,211,154,0.28), rgba(41,211,154,0.03) 55%, transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.28), rgba(124,58,237,0.03) 55%, transparent 70%);
   animation: pb-a 22s ease-in-out infinite;
 }
 .page-bg-3d .pb-orb-2 {
   width: 380px; height: 380px; left: -100px; top: 40%;
-  background: radial-gradient(circle at 40% 40%, rgba(126,232,202,0.22), rgba(41,211,154,0.02) 60%, transparent 75%);
+  background: radial-gradient(circle at 40% 40%, rgba(167,139,250,0.22), rgba(124,58,237,0.02) 60%, transparent 75%);
   animation: pb-b 28s ease-in-out infinite;
 }
 .page-bg-3d .pb-orb-3 {
@@ -617,14 +617,14 @@ input, textarea, select { color-scheme: dark; }
 .page-bg-3d .pb-blob {
   position: absolute; inset: -20%;
   background:
-    radial-gradient(50% 40% at 20% 30%, rgba(41,211,154,0.12), transparent 60%),
+    radial-gradient(50% 40% at 20% 30%, rgba(124,58,237,0.12), transparent 60%),
     radial-gradient(40% 50% at 80% 70%, rgba(90,120,255,0.10), transparent 60%);
   filter: blur(60px);
   animation: pb-blob 30s ease-in-out infinite alternate;
 }
 .page-bg-3d .pb-glow {
   position: absolute; inset: 0;
-  background: radial-gradient(360px 360px at var(--mx) var(--my), rgba(41,211,154,0.10), transparent 60%);
+  background: radial-gradient(360px 360px at var(--mx) var(--my), rgba(124,58,237,0.10), transparent 60%);
   transition: background 100ms linear;
 }
 @keyframes pb-a { 0%,100%{ transform: translate3d(0,0,0) scale(1);} 50%{ transform: translate3d(-40px,50px,0) scale(1.08);} }
@@ -657,7 +657,7 @@ input, textarea, select { color-scheme: dark; }
 .float-cta {
   opacity: 0; transform: translateY(20px) scale(0.9); pointer-events: none;
   transition: opacity .3s, transform .3s cubic-bezier(.2,.8,.2,1);
-  box-shadow: 0 20px 50px -18px rgba(41,211,154,0.55), 0 0 0 1px rgba(41,211,154,0.25) inset;
+  box-shadow: 0 20px 50px -18px rgba(124,58,237,0.55), 0 0 0 1px rgba(124,58,237,0.25) inset;
 }
 .float-cta.is-visible { opacity: 1; transform: none; pointer-events: auto; }
 .float-cta:hover { transform: translateY(-2px) scale(1.03); }
