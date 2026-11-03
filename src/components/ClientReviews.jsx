@@ -69,8 +69,8 @@ export default function ClientReviews() {
           </Button>)}
         </div>)}
       </div>}
-      {reviews.length > 0 && <div className="container-xl"><div className="review-quotes">
-        {reviews.map((item, i) => <article className="review-quote" key={i}><div className="flex items-center justify-between"><div className="flex gap-1 text-primary">{Array.from({ length: 5 }, (_, j) => <Star key={j} size={13} fill="currentColor" />)}</div><Quote size={20} className="text-muted-foreground" /></div><blockquote>“{item.q}”</blockquote><div className="review-author"><span className="review-avatar">{(item.a || "T").slice(0, 1)}</span><div><strong>{item.a}</strong><span>{item.r}</span></div></div></article>)}
+      {reviews.length > 0 && <div className="review-marquee"><div className="review-marquee-track">
+        {[...reviews, ...reviews, ...reviews, ...reviews].map((item, i) => <article className="review-quote" key={i} aria-hidden={i >= reviews.length ? true : undefined}><div className="flex items-center justify-between"><div className="flex gap-1 text-primary">{Array.from({ length: 5 }, (_, j) => <Star key={j} size={13} fill="currentColor" />)}</div><Quote size={20} className="text-muted-foreground" /></div><blockquote>“{item.q}”</blockquote><div className="review-author"><span className="review-avatar">{(item.a || "T").slice(0, 1)}</span><div><strong>{item.a}</strong><span>{item.r}</span></div></div></article>)}
       </div></div>}
       <Dialog open={!!active} onOpenChange={value => { if (!value) setActive(null); }}>
         <DialogContent className="max-w-4xl"><DialogTitle>{active?.name || "Trader"}'s review</DialogTitle><DialogDescription>{active?.role || "IndiFunded trading journey"}</DialogDescription>
