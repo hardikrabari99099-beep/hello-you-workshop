@@ -9,54 +9,701 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as SiteRouteImport } from './routes/_site'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as SiteIndexRouteImport } from './routes/_site.index'
+import { Route as SiteAboutRouteImport } from './routes/_site.about'
+import { Route as SiteChallengesRouteImport } from './routes/_site.challenges'
+import { Route as SiteContactRouteImport } from './routes/_site.contact'
+import { Route as SiteFaqRouteImport } from './routes/_site.faq'
+import { Route as SiteLeaderboardRouteImport } from './routes/_site.leaderboard'
+import { Route as SiteLeagueRouteImport } from './routes/_site.league'
+import { Route as SiteLoginRouteImport } from './routes/_site.login'
+import { Route as SitePayoutRequestRouteImport } from './routes/_site.payout-request'
+import { Route as SitePayoutsRouteImport } from './routes/_site.payouts'
+import { Route as SiteReferRouteImport } from './routes/_site.refer'
+import { Route as SiteRulesRouteImport } from './routes/_site.rules'
+import { Route as SiteToolsRouteImport } from './routes/_site.tools'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminBlogsRouteImport } from './routes/admin.blogs'
+import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
+import { Route as AdminCouponsRouteImport } from './routes/admin.coupons'
+import { Route as AdminLeaderboardRouteImport } from './routes/admin.leaderboard'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminLeagueRouteImport } from './routes/admin.league'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminPayoutsRouteImport } from './routes/admin.payouts'
+import { Route as AdminPlansRouteImport } from './routes/admin.plans'
+import { Route as AdminReferralsRouteImport } from './routes/admin.referrals'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminWeeklyPayoutsRouteImport } from './routes/admin.weekly-payouts'
 import { Route as ApiSplatRouteImport } from './routes/api/$'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAccountsRouteImport } from './routes/app.accounts'
+import { Route as AppCertificatesRouteImport } from './routes/app.certificates'
+import { Route as AppPayoutsRouteImport } from './routes/app.payouts'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as SiteBlogIndexRouteImport } from './routes/_site.blog.index'
+import { Route as SiteBlogSlugRouteImport } from './routes/_site.blog.$slug'
+import { Route as SiteCheckoutSuccessRouteImport } from './routes/_site.checkout.success'
 
-const IndexRoute = IndexRouteImport.update({
+const SiteRoute = SiteRouteImport.update({
+  id: '/_site',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteIndexRoute = SiteIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteAboutRoute = SiteAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteChallengesRoute = SiteChallengesRouteImport.update({
+  id: '/challenges',
+  path: '/challenges',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteContactRoute = SiteContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteFaqRoute = SiteFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteLeaderboardRoute = SiteLeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteLeagueRoute = SiteLeagueRouteImport.update({
+  id: '/league',
+  path: '/league',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteLoginRoute = SiteLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SitePayoutRequestRoute = SitePayoutRequestRouteImport.update({
+  id: '/payout-request',
+  path: '/payout-request',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SitePayoutsRoute = SitePayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteReferRoute = SiteReferRouteImport.update({
+  id: '/refer',
+  path: '/refer',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteRulesRoute = SiteRulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteToolsRoute = SiteToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => SiteRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBlogsRoute = AdminBlogsRouteImport.update({
+  id: '/blogs',
+  path: '/blogs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCertificatesRoute = AdminCertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCouponsRoute = AdminCouponsRouteImport.update({
+  id: '/coupons',
+  path: '/coupons',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLeaderboardRoute = AdminLeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLeagueRoute = AdminLeagueRouteImport.update({
+  id: '/league',
+  path: '/league',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPayoutsRoute = AdminPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPlansRoute = AdminPlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReferralsRoute = AdminReferralsRouteImport.update({
+  id: '/referrals',
+  path: '/referrals',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminWeeklyPayoutsRoute = AdminWeeklyPayoutsRouteImport.update({
+  id: '/weekly-payouts',
+  path: '/weekly-payouts',
+  getParentRoute: () => AdminRoute,
 } as any)
 const ApiSplatRoute = ApiSplatRouteImport.update({
   id: '/api/$',
   path: '/api/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAccountsRoute = AppAccountsRouteImport.update({
+  id: '/accounts',
+  path: '/accounts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCertificatesRoute = AppCertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPayoutsRoute = AppPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const SiteBlogIndexRoute = SiteBlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteBlogSlugRoute = SiteBlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteCheckoutSuccessRoute = SiteCheckoutSuccessRouteImport.update({
+  id: '/checkout/success',
+  path: '/checkout/success',
+  getParentRoute: () => SiteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof SiteIndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/app': typeof AppRouteWithChildren
+  '/about': typeof SiteAboutRoute
+  '/challenges': typeof SiteChallengesRoute
+  '/contact': typeof SiteContactRoute
+  '/faq': typeof SiteFaqRoute
+  '/leaderboard': typeof SiteLeaderboardRoute
+  '/league': typeof SiteLeagueRoute
+  '/login': typeof SiteLoginRoute
+  '/payout-request': typeof SitePayoutRequestRoute
+  '/payouts': typeof SitePayoutsRoute
+  '/refer': typeof SiteReferRoute
+  '/rules': typeof SiteRulesRoute
+  '/tools': typeof SiteToolsRoute
+  '/admin/blogs': typeof AdminBlogsRoute
+  '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/coupons': typeof AdminCouponsRoute
+  '/admin/leaderboard': typeof AdminLeaderboardRoute
+  '/admin/leads': typeof AdminLeadsRoute
+  '/admin/league': typeof AdminLeagueRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/payouts': typeof AdminPayoutsRoute
+  '/admin/plans': typeof AdminPlansRoute
+  '/admin/referrals': typeof AdminReferralsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
+  '/app/accounts': typeof AppAccountsRoute
+  '/app/certificates': typeof AppCertificatesRoute
+  '/app/payouts': typeof AppPayoutsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/app/': typeof AppIndexRoute
+  '/blog/$slug': typeof SiteBlogSlugRoute
+  '/checkout/success': typeof SiteCheckoutSuccessRoute
+  '/blog/': typeof SiteBlogIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/about': typeof SiteAboutRoute
+  '/challenges': typeof SiteChallengesRoute
+  '/contact': typeof SiteContactRoute
+  '/faq': typeof SiteFaqRoute
+  '/leaderboard': typeof SiteLeaderboardRoute
+  '/league': typeof SiteLeagueRoute
+  '/login': typeof SiteLoginRoute
+  '/payout-request': typeof SitePayoutRequestRoute
+  '/payouts': typeof SitePayoutsRoute
+  '/refer': typeof SiteReferRoute
+  '/rules': typeof SiteRulesRoute
+  '/tools': typeof SiteToolsRoute
+  '/admin/blogs': typeof AdminBlogsRoute
+  '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/coupons': typeof AdminCouponsRoute
+  '/admin/leaderboard': typeof AdminLeaderboardRoute
+  '/admin/leads': typeof AdminLeadsRoute
+  '/admin/league': typeof AdminLeagueRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/payouts': typeof AdminPayoutsRoute
+  '/admin/plans': typeof AdminPlansRoute
+  '/admin/referrals': typeof AdminReferralsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
+  '/app/accounts': typeof AppAccountsRoute
+  '/app/certificates': typeof AppCertificatesRoute
+  '/app/payouts': typeof AppPayoutsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/': typeof SiteIndexRoute
+  '/admin': typeof AdminIndexRoute
+  '/app': typeof AppIndexRoute
+  '/blog/$slug': typeof SiteBlogSlugRoute
+  '/checkout/success': typeof SiteCheckoutSuccessRoute
+  '/blog': typeof SiteBlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_site': typeof SiteRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
+  '/app': typeof AppRouteWithChildren
+  '/_site/about': typeof SiteAboutRoute
+  '/_site/challenges': typeof SiteChallengesRoute
+  '/_site/contact': typeof SiteContactRoute
+  '/_site/faq': typeof SiteFaqRoute
+  '/_site/leaderboard': typeof SiteLeaderboardRoute
+  '/_site/league': typeof SiteLeagueRoute
+  '/_site/login': typeof SiteLoginRoute
+  '/_site/payout-request': typeof SitePayoutRequestRoute
+  '/_site/payouts': typeof SitePayoutsRoute
+  '/_site/refer': typeof SiteReferRoute
+  '/_site/rules': typeof SiteRulesRoute
+  '/_site/tools': typeof SiteToolsRoute
+  '/admin/blogs': typeof AdminBlogsRoute
+  '/admin/certificates': typeof AdminCertificatesRoute
+  '/admin/coupons': typeof AdminCouponsRoute
+  '/admin/leaderboard': typeof AdminLeaderboardRoute
+  '/admin/leads': typeof AdminLeadsRoute
+  '/admin/league': typeof AdminLeagueRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/payouts': typeof AdminPayoutsRoute
+  '/admin/plans': typeof AdminPlansRoute
+  '/admin/referrals': typeof AdminReferralsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
+  '/app/accounts': typeof AppAccountsRoute
+  '/app/certificates': typeof AppCertificatesRoute
+  '/app/payouts': typeof AppPayoutsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/_site/': typeof SiteIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/app/': typeof AppIndexRoute
+  '/_site/blog/$slug': typeof SiteBlogSlugRoute
+  '/_site/checkout/success': typeof SiteCheckoutSuccessRoute
+  '/_site/blog/': typeof SiteBlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/$'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/app'
+    | '/about'
+    | '/challenges'
+    | '/contact'
+    | '/faq'
+    | '/leaderboard'
+    | '/league'
+    | '/login'
+    | '/payout-request'
+    | '/payouts'
+    | '/refer'
+    | '/rules'
+    | '/tools'
+    | '/admin/blogs'
+    | '/admin/certificates'
+    | '/admin/coupons'
+    | '/admin/leaderboard'
+    | '/admin/leads'
+    | '/admin/league'
+    | '/admin/orders'
+    | '/admin/payouts'
+    | '/admin/plans'
+    | '/admin/referrals'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/admin/weekly-payouts'
+    | '/api/$'
+    | '/app/accounts'
+    | '/app/certificates'
+    | '/app/payouts'
+    | '/app/settings'
+    | '/admin/'
+    | '/app/'
+    | '/blog/$slug'
+    | '/checkout/success'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/$'
-  id: '__root__' | '/' | '/api/$'
+  to:
+    | '/about'
+    | '/challenges'
+    | '/contact'
+    | '/faq'
+    | '/leaderboard'
+    | '/league'
+    | '/login'
+    | '/payout-request'
+    | '/payouts'
+    | '/refer'
+    | '/rules'
+    | '/tools'
+    | '/admin/blogs'
+    | '/admin/certificates'
+    | '/admin/coupons'
+    | '/admin/leaderboard'
+    | '/admin/leads'
+    | '/admin/league'
+    | '/admin/orders'
+    | '/admin/payouts'
+    | '/admin/plans'
+    | '/admin/referrals'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/admin/weekly-payouts'
+    | '/api/$'
+    | '/app/accounts'
+    | '/app/certificates'
+    | '/app/payouts'
+    | '/app/settings'
+    | '/'
+    | '/admin'
+    | '/app'
+    | '/blog/$slug'
+    | '/checkout/success'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/_site'
+    | '/admin'
+    | '/app'
+    | '/_site/about'
+    | '/_site/challenges'
+    | '/_site/contact'
+    | '/_site/faq'
+    | '/_site/leaderboard'
+    | '/_site/league'
+    | '/_site/login'
+    | '/_site/payout-request'
+    | '/_site/payouts'
+    | '/_site/refer'
+    | '/_site/rules'
+    | '/_site/tools'
+    | '/admin/blogs'
+    | '/admin/certificates'
+    | '/admin/coupons'
+    | '/admin/leaderboard'
+    | '/admin/leads'
+    | '/admin/league'
+    | '/admin/orders'
+    | '/admin/payouts'
+    | '/admin/plans'
+    | '/admin/referrals'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/admin/weekly-payouts'
+    | '/api/$'
+    | '/app/accounts'
+    | '/app/certificates'
+    | '/app/payouts'
+    | '/app/settings'
+    | '/_site/'
+    | '/admin/'
+    | '/app/'
+    | '/_site/blog/$slug'
+    | '/_site/checkout/success'
+    | '/_site/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  SiteRoute: typeof SiteRouteWithChildren
+  AdminRoute: typeof AdminRouteWithChildren
+  AppRoute: typeof AppRouteWithChildren
   ApiSplatRoute: typeof ApiSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_site': {
+      id: '/_site'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof SiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_site/': {
+      id: '/_site/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof SiteIndexRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/about': {
+      id: '/_site/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof SiteAboutRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/challenges': {
+      id: '/_site/challenges'
+      path: '/challenges'
+      fullPath: '/challenges'
+      preLoaderRoute: typeof SiteChallengesRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/contact': {
+      id: '/_site/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof SiteContactRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/faq': {
+      id: '/_site/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof SiteFaqRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/leaderboard': {
+      id: '/_site/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof SiteLeaderboardRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/league': {
+      id: '/_site/league'
+      path: '/league'
+      fullPath: '/league'
+      preLoaderRoute: typeof SiteLeagueRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/login': {
+      id: '/_site/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof SiteLoginRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/payout-request': {
+      id: '/_site/payout-request'
+      path: '/payout-request'
+      fullPath: '/payout-request'
+      preLoaderRoute: typeof SitePayoutRequestRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/payouts': {
+      id: '/_site/payouts'
+      path: '/payouts'
+      fullPath: '/payouts'
+      preLoaderRoute: typeof SitePayoutsRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/refer': {
+      id: '/_site/refer'
+      path: '/refer'
+      fullPath: '/refer'
+      preLoaderRoute: typeof SiteReferRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/rules': {
+      id: '/_site/rules'
+      path: '/rules'
+      fullPath: '/rules'
+      preLoaderRoute: typeof SiteRulesRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/tools': {
+      id: '/_site/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof SiteToolsRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/blogs': {
+      id: '/admin/blogs'
+      path: '/blogs'
+      fullPath: '/admin/blogs'
+      preLoaderRoute: typeof AdminBlogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/certificates': {
+      id: '/admin/certificates'
+      path: '/certificates'
+      fullPath: '/admin/certificates'
+      preLoaderRoute: typeof AdminCertificatesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/coupons': {
+      id: '/admin/coupons'
+      path: '/coupons'
+      fullPath: '/admin/coupons'
+      preLoaderRoute: typeof AdminCouponsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/leaderboard': {
+      id: '/admin/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/admin/leaderboard'
+      preLoaderRoute: typeof AdminLeaderboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/league': {
+      id: '/admin/league'
+      path: '/league'
+      fullPath: '/admin/league'
+      preLoaderRoute: typeof AdminLeagueRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/payouts': {
+      id: '/admin/payouts'
+      path: '/payouts'
+      fullPath: '/admin/payouts'
+      preLoaderRoute: typeof AdminPayoutsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/plans': {
+      id: '/admin/plans'
+      path: '/plans'
+      fullPath: '/admin/plans'
+      preLoaderRoute: typeof AdminPlansRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/referrals': {
+      id: '/admin/referrals'
+      path: '/referrals'
+      fullPath: '/admin/referrals'
+      preLoaderRoute: typeof AdminReferralsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/weekly-payouts': {
+      id: '/admin/weekly-payouts'
+      path: '/weekly-payouts'
+      fullPath: '/admin/weekly-payouts'
+      preLoaderRoute: typeof AdminWeeklyPayoutsRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/api/$': {
       id: '/api/$'
@@ -65,11 +712,163 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/accounts': {
+      id: '/app/accounts'
+      path: '/accounts'
+      fullPath: '/app/accounts'
+      preLoaderRoute: typeof AppAccountsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/certificates': {
+      id: '/app/certificates'
+      path: '/certificates'
+      fullPath: '/app/certificates'
+      preLoaderRoute: typeof AppCertificatesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/payouts': {
+      id: '/app/payouts'
+      path: '/payouts'
+      fullPath: '/app/payouts'
+      preLoaderRoute: typeof AppPayoutsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_site/blog/': {
+      id: '/_site/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof SiteBlogIndexRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/blog/$slug': {
+      id: '/_site/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof SiteBlogSlugRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/checkout/success': {
+      id: '/_site/checkout/success'
+      path: '/checkout/success'
+      fullPath: '/checkout/success'
+      preLoaderRoute: typeof SiteCheckoutSuccessRouteImport
+      parentRoute: typeof SiteRoute
+    }
   }
 }
 
+interface SiteRouteChildren {
+  SiteAboutRoute: typeof SiteAboutRoute
+  SiteChallengesRoute: typeof SiteChallengesRoute
+  SiteContactRoute: typeof SiteContactRoute
+  SiteFaqRoute: typeof SiteFaqRoute
+  SiteLeaderboardRoute: typeof SiteLeaderboardRoute
+  SiteLeagueRoute: typeof SiteLeagueRoute
+  SiteLoginRoute: typeof SiteLoginRoute
+  SitePayoutRequestRoute: typeof SitePayoutRequestRoute
+  SitePayoutsRoute: typeof SitePayoutsRoute
+  SiteReferRoute: typeof SiteReferRoute
+  SiteRulesRoute: typeof SiteRulesRoute
+  SiteToolsRoute: typeof SiteToolsRoute
+  SiteIndexRoute: typeof SiteIndexRoute
+  SiteBlogSlugRoute: typeof SiteBlogSlugRoute
+  SiteCheckoutSuccessRoute: typeof SiteCheckoutSuccessRoute
+  SiteBlogIndexRoute: typeof SiteBlogIndexRoute
+}
+
+const SiteRouteChildren: SiteRouteChildren = {
+  SiteAboutRoute: SiteAboutRoute,
+  SiteChallengesRoute: SiteChallengesRoute,
+  SiteContactRoute: SiteContactRoute,
+  SiteFaqRoute: SiteFaqRoute,
+  SiteLeaderboardRoute: SiteLeaderboardRoute,
+  SiteLeagueRoute: SiteLeagueRoute,
+  SiteLoginRoute: SiteLoginRoute,
+  SitePayoutRequestRoute: SitePayoutRequestRoute,
+  SitePayoutsRoute: SitePayoutsRoute,
+  SiteReferRoute: SiteReferRoute,
+  SiteRulesRoute: SiteRulesRoute,
+  SiteToolsRoute: SiteToolsRoute,
+  SiteIndexRoute: SiteIndexRoute,
+  SiteBlogSlugRoute: SiteBlogSlugRoute,
+  SiteCheckoutSuccessRoute: SiteCheckoutSuccessRoute,
+  SiteBlogIndexRoute: SiteBlogIndexRoute,
+}
+
+const SiteRouteWithChildren = SiteRoute._addFileChildren(SiteRouteChildren)
+
+interface AdminRouteChildren {
+  AdminBlogsRoute: typeof AdminBlogsRoute
+  AdminCertificatesRoute: typeof AdminCertificatesRoute
+  AdminCouponsRoute: typeof AdminCouponsRoute
+  AdminLeaderboardRoute: typeof AdminLeaderboardRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
+  AdminLeagueRoute: typeof AdminLeagueRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminPayoutsRoute: typeof AdminPayoutsRoute
+  AdminPlansRoute: typeof AdminPlansRoute
+  AdminReferralsRoute: typeof AdminReferralsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminWeeklyPayoutsRoute: typeof AdminWeeklyPayoutsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminBlogsRoute: AdminBlogsRoute,
+  AdminCertificatesRoute: AdminCertificatesRoute,
+  AdminCouponsRoute: AdminCouponsRoute,
+  AdminLeaderboardRoute: AdminLeaderboardRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
+  AdminLeagueRoute: AdminLeagueRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminPayoutsRoute: AdminPayoutsRoute,
+  AdminPlansRoute: AdminPlansRoute,
+  AdminReferralsRoute: AdminReferralsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminWeeklyPayoutsRoute: AdminWeeklyPayoutsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface AppRouteChildren {
+  AppAccountsRoute: typeof AppAccountsRoute
+  AppCertificatesRoute: typeof AppCertificatesRoute
+  AppPayoutsRoute: typeof AppPayoutsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAccountsRoute: AppAccountsRoute,
+  AppCertificatesRoute: AppCertificatesRoute,
+  AppPayoutsRoute: AppPayoutsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  SiteRoute: SiteRouteWithChildren,
+  AdminRoute: AdminRouteWithChildren,
+  AppRoute: AppRouteWithChildren,
   ApiSplatRoute: ApiSplatRoute,
 }
 export const routeTree = rootRouteImport
