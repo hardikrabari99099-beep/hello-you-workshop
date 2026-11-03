@@ -1010,3 +1010,38 @@ export function AdminWeeklyPayouts() {
     </div>
   );
 }
+
+export function AdminStories() {
+  const [rows, setRows] = useState([]);
+  const load = () => api.get("/admin/stories").then((r) => setRows(r.data));
+  useEffect(() => { load(); }, []);
+  const setStatus = async (id, status) => { await api.put(`/admin/stories/${id}`, { status }); toast.success(`Marked ${status}`); load(); };
+  const del = async (id) => { if (!window.confirm("Delete story?")) return; await api.delete(`/admin/stories/${id}`); load(); };
+  return (
+    <div>
+      <div className="chip mb-3">Community</div>
+      <h1 className="font-display text-4xl">Trader Stories ({rows.length})</h1>
+      <div className="space-y-4 mt-10">
+        {rows.length === 0 && <div className="card-panel p-6 text-[var(--muted)]">No stories submitted yet.</div>}
+        {rows.map((s) => (
+          <div key={s.id} className="card-panel p-5">
+            <div className="flex flex-wrap justify-between gap-3">
+              <div>
+                <div className="font-display text-lg">{s.title}</div>
+                <div className="text-xs text-[var(--muted)]">{s.name} · {s.email} · {s.rating}★ · {new Date(s.created_at).toLocaleDateString()}</div>
+              </div>
+              <span className="chip">{s.status}</span>
+            </div>
+            <p className="text-sm text-[var(--muted)] mt-3 whitespace-pre-line">{s.story}</p>
+            {s.video_url && <a href={s.video_url} target="_blank" rel="noopener noreferrer" className="text-xs text-[var(--accent-hi)] mt-2 inline-block">Video link</a>}
+            <div className="flex gap-2 mt-4">
+              {s.status !== "approved" && <button onClick={() => setStatus(s.id, "approved")} className="btn-amber px-4 py-1.5 rounded-md text-sm">Approve</button>}
+              {s.status !== "rejected" && <button onClick={() => setStatus(s.id, "rejected")} className="btn-ghost px-4 py-1.5 rounded-md text-sm">Reject</button>}
+              <button onClick={() => del(s.id)} className="btn-ghost px-3 py-1.5 rounded-md text-[var(--rose)]"><Trash2 size={14}/></button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

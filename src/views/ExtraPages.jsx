@@ -5,7 +5,7 @@ import { useSettings } from "../context/SettingsContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import HowItWorksSection from "../components/HowItWorks";
-import { ShieldCheck, Search, CheckCircle2, XCircle, ArrowRight, Building2, Users, Wallet, Award } from "lucide-react";
+import { ShieldCheck, Search, CheckCircle2, XCircle, ArrowRight, Building2, Users, Wallet, Award, Star } from "lucide-react";
 
 const Shell = ({ chip, title, sub, children }) => (
   <div className="container-xl pt-12 md:pt-16 pb-16 md:pb-24">
@@ -179,6 +179,69 @@ export function ResetPassword() {
           className="w-full rounded-lg bg-transparent border border-[var(--border-hi)] px-4 py-3 text-sm" />
         <button className="btn-amber rounded-full px-6 py-3 w-full">Update password</button>
       </form>
+    </Shell>
+  );
+}
+
+const ytEmbed = (u) => {
+  const m = String(u || "").match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+  return m ? `https://www.youtube.com/embed/${m[1]}` : null;
+};
+
+export function TraderStories() {
+  const [stories, setStories] = useState(null);
+  const [form, setForm] = useState({ name: "", city: "", title: "", story: "", rating: 5, video_url: "", payout_amount: "" });
+  const [busy, setBusy] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => { api.get("/stories").then((r) => setStories(r.data)).catch(() => setStories([])); }, []);
+  const submit = async (e) => {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      await api.post("/stories", form);
+      toast.success("Thanks! Your story will appear after review.");
+      setOpen(false);
+      setForm({ name: "", city: "", title: "", story: "", rating: 5, video_url: "", payout_amount: "" });
+    } catch (err) {
+      toast.error(err?.response?.status === 401 ? "Please sign in to share your story" : (err?.response?.data?.detail || "Could not submit"));
+    } finally { setBusy(false); }
+  };
+  const inp = "w-full rounded-lg bg-transparent border border-[var(--border-hi)] px-4 py-2.5 text-sm";
+  return (
+    <Shell chip="Trader Stories" title="Real traders. Real results." sub="Experiences shared by IndiFunded traders, reviewed by our team.">
+      <button onClick={() => setOpen((v) => !v)} className="btn-amber rounded-full px-6 py-3 mb-8">{open ? "Close" : "Share your story"}</button>
+      {open && (
+        <form onSubmit={submit} className="glass-card p-6 grid sm:grid-cols-2 gap-3 mb-10 max-w-3xl">
+          <input className={inp} placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required maxLength={80}/>
+          <input className={inp} placeholder="City" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} maxLength={60}/>
+          <input className={`${inp} sm:col-span-2`} placeholder="Headline" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required maxLength={120}/>
+          <textarea className={`${inp} sm:col-span-2 min-h-32`} placeholder="Your experience (min 20 characters)" value={form.story} onChange={(e) => setForm({ ...form, story: e.target.value })} required minLength={20} maxLength={2000}/>
+          <input className={inp} placeholder="YouTube video link (optional)" value={form.video_url} onChange={(e) => setForm({ ...form, video_url: e.target.value })} maxLength={300}/>
+          <input className={inp} type="number" min="0" placeholder="Payout received ₹ (optional)" value={form.payout_amount} onChange={(e) => setForm({ ...form, payout_amount: e.target.value })}/>
+          <select className={inp} value={form.rating} onChange={(e) => setForm({ ...form, rating: e.target.value })}>
+            {[5, 4, 3, 2, 1].map((n) => <option key={n} value={n} className="bg-[var(--surface)]">{n} stars</option>)}
+          </select>
+          <button disabled={busy} className="btn-amber rounded-full px-6 py-2.5">{busy ? "Sending…" : "Submit for review"}</button>
+        </form>
+      )}
+      {stories === null ? <div className="text-[var(--muted)]">Loading…</div> : stories.length === 0 ? (
+        <div className="glass-card p-6 text-[var(--muted)]">No stories yet — be the first to share yours.</div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {stories.map((s) => {
+            const v = ytEmbed(s.video_url);
+            return (
+              <article key={s.id} className="glass-card hover-lift p-6 flex flex-col">
+                {v && <div className="aspect-video rounded-lg overflow-hidden mb-4"><iframe src={v} title={s.title} className="w-full h-full" allowFullScreen loading="lazy"/></div>}
+                <div className="flex gap-0.5 text-[var(--accent-hi)]">{Array.from({ length: s.rating || 5 }).map((_, i) => <Star key={i} size={14} fill="currentColor"/>)}</div>
+                <h3 className="font-display text-xl mt-3">{s.title}</h3>
+                <p className="text-sm text-[var(--muted)] mt-2 leading-relaxed flex-1">{s.story}</p>
+                <div className="text-sm mt-4">{s.name}{s.city ? `, ${s.city}` : ""}{s.payout_amount ? <span className="text-[var(--emerald)]"> · ₹{Number(s.payout_amount).toLocaleString("en-IN")} payout</span> : null}</div>
+              </article>
+            );
+          })}
+        </div>
+      )}
     </Shell>
   );
 }
