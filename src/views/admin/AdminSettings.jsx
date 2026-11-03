@@ -17,7 +17,13 @@ export default function AdminSettings() {
   const [s, setS] = useState(null);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => { setS(deepClone(settings)); }, [settings]);
+  useEffect(() => {
+    let mounted = true;
+    api.get("/settings", { params: { _refresh: Date.now() } }).then(response => {
+      if (mounted) setS(deepClone({ ...DEFAULT_SETTINGS, ...response.data }));
+    }).catch(() => { if (mounted) setS(deepClone(settings)); });
+    return () => { mounted = false; };
+  }, []);
 
   if (!s) return <div className="text-[var(--muted)]">Loading…</div>;
 
@@ -25,7 +31,7 @@ export default function AdminSettings() {
   const save = async () => {
     if ((s.video_reviews?.items || []).some(item => item.enabled !== false && !getReviewMedia(item.url || ""))) { toast.error("Each enabled review needs a valid HTTPS MP4, WebM, YouTube or Vimeo link."); return; }
     setSaving(true);
-    try { await api.put("/settings", s); toast.success("Settings saved"); reload(); }
+    try { const response = await api.put("/settings", s); setS(deepClone(response.data)); toast.success("Settings saved"); reload(); }
     catch (e) { toast.error(formatApiError(e.response?.data?.detail)); }
     finally { setSaving(false); }
   };
