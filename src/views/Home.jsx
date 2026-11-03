@@ -12,7 +12,8 @@ import TrustStrip from "../components/TrustStrip";
 import RatingsBar from "../components/RatingsBar";
 import ProfitCalculator from "../components/ProfitCalculator";
 import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
-import { ArrowRight, ShieldCheck, Trophy, Flame, Rocket, Star, CheckCircle2 } from "lucide-react";
+import ChallengePicker from "../components/ChallengePicker";
+import { ArrowRight, ShieldCheck, Trophy, Flame, Rocket, Star, CheckCircle2, Youtube, MessageCircle } from "lucide-react";
 
 export default function Home() {
   const [plans, setPlans] = useState([]);
@@ -37,24 +38,15 @@ export default function Home() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="aurora" aria-hidden="true"/>
-        {/* Floating decorative orbs + 3D coins */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <span className="orb orb-1"/>
-          <span className="orb orb-2"/>
-          <span className="orb orb-3"/>
-          <div className="coin-3d coin-a"><div className="coin-inner"><div className="face">₹</div><div className="face back">₹</div></div></div>
-          <div className="coin-3d coin-b"><div className="coin-inner"><div className="face">₹</div><div className="face back">₹</div></div></div>
-          <div className="coin-3d coin-c"><div className="coin-inner"><div className="face">₹</div><div className="face back">₹</div></div></div>
-        </div>
-        <div className="container-xl pt-12 md:pt-20 pb-16 md:pb-28 relative">
+        <div className="container-xl pt-16 md:pt-28 pb-16 md:pb-24 relative text-center flex flex-col items-center">
           <div className="reveal-up chip mb-5 md:mb-6" data-testid="hero-chip"><span className="w-1.5 h-1.5 rounded-full bg-[var(--emerald)] animate-pulse"/> {h.chip}</div>
-          <h1 className="font-display text-4xl md:text-7xl font-semibold leading-[0.98] max-w-4xl reveal-up" style={{animationDelay:"80ms"}}>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-8xl font-semibold leading-[0.95] tracking-tight max-w-5xl reveal-up" style={{animationDelay:"80ms"}}>
             {h.title_before} <span className="text-[var(--accent)] pulse-accent">{h.title_highlight}</span> {h.title_after}
           </h1>
-          <p className="mt-4 md:mt-6 text-base md:text-lg text-[var(--muted)] max-w-2xl reveal-up" style={{animationDelay:"160ms"}}>
+          <p className="mt-4 md:mt-6 text-base md:text-xl text-[var(--muted)] max-w-2xl mx-auto reveal-up" style={{animationDelay:"160ms"}}>
             {h.subtitle}
           </p>
-          <div className="mt-6 md:mt-8 flex flex-wrap gap-3 reveal-up" style={{animationDelay:"240ms"}}>
+          <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-3 reveal-up" style={{animationDelay:"240ms"}}>
             <Link to={challengesHref} className="btn-amber px-6 md:px-7 py-3 md:py-3.5 rounded-full inline-flex items-center gap-2 text-sm md:text-base" data-testid="hero-cta-primary">
               {h.cta_primary} <ArrowRight size={16}/>
             </Link>
@@ -62,9 +54,9 @@ export default function Home() {
           </div>
 
           {/* stat strip */}
-          <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 reveal-up" style={{animationDelay:"320ms"}}>
+          <div className="mt-14 md:mt-20 w-full max-w-5xl grid grid-cols-2 md:grid-cols-4 card-panel divide-x divide-[var(--border)] overflow-hidden reveal-up" style={{animationDelay:"320ms"}}>
             {(h.stats || []).map((s,i)=>(
-              <div key={i} className="glass-card p-4 md:p-6" data-testid={`hero-stat-${i}`}>
+              <div key={i} className="p-5 md:p-7" data-testid={`hero-stat-${i}`}>
                 <div className="font-display text-2xl md:text-4xl text-white">{s.k}</div>
                 <div className="text-[10px] md:text-xs tracking-wider uppercase text-[var(--muted-2)] mt-1 md:mt-2">{s.v}</div>
               </div>
@@ -113,54 +105,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PLANS */}
-      <section className="container-xl py-24">
-        <div className="mb-12">
-          <div className="chip mb-4">Plans</div>
-          <h2 className="font-display text-4xl md:text-5xl max-w-3xl">Prove your skills. Pick your plan.</h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-5 pt-4">
-          {plans.map((p,i)=>(
-            <div key={p.id} data-reveal data-reveal-delay={String((i%3)+1)}
-                 className={`card-panel hover-lift p-8 pt-10 relative ${p.popular ? "glow-border" : ""}`}
-                 data-testid={`home-plan-${i}`}>
-              {p.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 md:left-7 md:translate-x-0 text-[10px] tracking-widest font-mono uppercase px-3 py-1 rounded-full bg-[var(--accent)] text-white shadow-lg whitespace-nowrap z-10">Most Popular</div>
-              )}
-              <div className="flex items-start justify-between">
-                <div>
-                  <div className="text-xs uppercase tracking-wider text-[var(--muted-2)] font-mono">{p.name}</div>
-                  <div className="font-display text-3xl mt-2">{formatINR(p.account_size)}</div>
-                  <div className="text-xs text-[var(--muted)] mt-1">Account Size</div>
-                </div>
-                <Rocket className="text-[var(--accent)]" size={20}/>
-              </div>
-              <div className="mt-6 pt-6 border-t border-[var(--border)] space-y-2">
-                {p.features?.slice(0,4).map((f,idx)=>(
-                  <div key={idx} className="flex items-start gap-2 text-sm text-[var(--muted)]"><CheckCircle2 size={14} className="mt-1 text-[var(--emerald)]"/>{f}</div>
-                ))}
-              </div>
-              <div className="flex items-end justify-between mt-7">
-                <div>
-                  <div className="text-xs text-[var(--muted-2)]">Challenge Fee</div>
-                  <div className="flex items-baseline gap-2 mt-1">
-                    <div className="font-display text-2xl text-white">{formatINR(p.challenge_fee)}</div>
-                    {p.original_price && p.original_price > p.challenge_fee && (
-                      <>
-                        <div className="text-sm text-[var(--muted-2)] line-through">{formatINR(p.original_price)}</div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-[rgba(41,211,154,0.15)] text-[var(--accent)]">
-                          -{Math.round(((p.original_price - p.challenge_fee) / p.original_price) * 100)}%
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-                <Link to={challengesHref} className="btn-amber rounded-full px-5 py-2.5 text-sm" data-testid={`home-plan-cta-${i}`}>Buy Now</Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* CHALLENGE PICKER */}
+      <ChallengePicker plans={plans} href={challengesHref} />
 
       {/* TESTIMONIALS */}
       <PayoutCertificates />
@@ -213,14 +159,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COMMUNITY */}
+      <section className="container-xl py-20 md:py-24">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="chip mb-4 mx-auto">Community</div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl">A community that adds value</h2>
+          <p className="text-[var(--muted)] mt-4">Learn, share setups and celebrate payouts with traders across India.</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          <a href={settings.social?.youtube || "#"} target="_blank" rel="noopener noreferrer" className="card-panel hover-lift p-8 flex items-start gap-5" data-testid="community-youtube">
+            <div className="w-12 h-12 rounded-xl grid place-items-center border border-[var(--border-hi)] text-[var(--accent-hi)] shrink-0"><Youtube/></div>
+            <div><div className="font-display text-2xl">YouTube community</div><p className="text-sm text-[var(--muted)] mt-2">Strategy breakdowns, payout proofs and live sessions.</p><div className="text-sm text-[var(--accent-hi)] mt-4 inline-flex items-center gap-1">Subscribe <ArrowRight size={14}/></div></div>
+          </a>
+          <a href={settings.social?.whatsapp_link || "#"} target="_blank" rel="noopener noreferrer" className="card-panel hover-lift p-8 flex items-start gap-5" data-testid="community-whatsapp">
+            <div className="w-12 h-12 rounded-xl grid place-items-center border border-[var(--border-hi)] text-[var(--accent-hi)] shrink-0"><MessageCircle/></div>
+            <div><div className="font-display text-2xl">WhatsApp community</div><p className="text-sm text-[var(--muted)] mt-2">Daily updates, announcements and quick help from our team.</p><div className="text-sm text-[var(--accent-hi)] mt-4 inline-flex items-center gap-1">Join now <ArrowRight size={14}/></div></div>
+          </a>
+        </div>
+      </section>
+
+      {/* SUPPORT */}
+      <section className="container-xl py-20 md:py-24">
+        <div className="card-panel p-8 md:p-14 grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="chip mb-4">Support</div>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">Support that never clocks out</h2>
+            <p className="text-[var(--muted)] mt-4 max-w-md">Real people, fast answers — on WhatsApp, email and phone, every day of the week.</p>
+            <div className="flex flex-wrap gap-3 mt-8">
+              <Link to="/contact" className="btn-amber rounded-full px-6 py-3 inline-flex items-center gap-2">Contact support <ArrowRight size={16}/></Link>
+              <Link to="/faq" className="btn-ghost rounded-full px-6 py-3">Read FAQ</Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {[["24/7","Availability"],["< 5 min","Avg. reply on WhatsApp"],["24h","Payout processing"],["Hindi + English","Languages"]].map(([k,v])=>(
+              <div key={v} className="glass-card p-5"><div className="font-display text-2xl md:text-3xl">{k}</div><div className="text-xs text-[var(--muted-2)] uppercase tracking-wider mt-2">{v}</div></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="container-xl pt-12 pb-24">
-        <div className="card-panel glow-border p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8" data-testid="bottom-cta">
-          <div>
-            <h3 className="font-display text-3xl md:text-4xl max-w-xl">Stop risking your own capital. Trade ours.</h3>
-            <p className="text-[var(--muted)] mt-3 max-w-xl">One challenge. Funded in 24h after verification. 70% profits to you.</p>
+        <div className="card-panel glow-border relative overflow-hidden p-10 md:p-20 text-center" data-testid="bottom-cta">
+          <div className="aurora" aria-hidden="true"/>
+          <div className="relative">
+            <h3 className="font-display text-4xl md:text-7xl max-w-3xl mx-auto leading-[1]">Start your IndiFunded challenge</h3>
+            <p className="text-[var(--muted)] mt-5 max-w-xl mx-auto">Stop risking your own capital. Trade ours and keep 70% of the profits.</p>
+            <Link to={challengesHref} className="btn-amber rounded-full px-8 py-4 mt-8 inline-flex items-center gap-2">Get funded <ArrowRight size={16}/></Link>
           </div>
-          <Link to={challengesHref} className="btn-amber rounded-full px-7 py-3.5 inline-flex items-center gap-2 whitespace-nowrap">Start Your Challenge <ArrowRight size={16}/></Link>
         </div>
       </section>
     </div>
