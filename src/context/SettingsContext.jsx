@@ -23,7 +23,7 @@ export function SettingsProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const reload = useCallback(async () => {
     try {
-      const r = await api.get("/settings");
+      const r = await api.get("/settings", { params: { _refresh: Date.now() } });
       setSettings(merge(DEFAULT_SETTINGS, r.data || {}));
     } catch (_) { /* keep defaults */ }
     finally { setLoading(false); }

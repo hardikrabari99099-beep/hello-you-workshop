@@ -56,6 +56,8 @@ export const DEFAULT_SETTINGS = {
       { n: "03", t: "Get Paid", d: "Trade independently and take home 70% of the profits — payouts processed within 24 hours to your bank." },
     ],
   },
+  home_sections: { plans: true, payouts: true, reviews: true, steps: true, benefits: true, calculator: true, community: true, blogs: true, faq: true, support: true },
+  video_reviews: { enabled: true, heading: "The people behind the payouts", subtitle: "Trading journeys, in their own words.", items: [] },
   testimonials: [
     { q: "Passing the challenge isn't easy, but it's worth it. You learn so much about yourself as a trader. IndiFunded truly pushes you to the next level.", a: "Rahul Chouhan", r: "Standard Challenge Trader" },
     { q: "Payout in 18 hours. I've tried 3 other prop firms — none come close. This is the one for Indian traders.", a: "Priya Sharma", r: "Standard Challenge Trader" },

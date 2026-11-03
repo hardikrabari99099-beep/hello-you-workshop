@@ -5,6 +5,7 @@ import { useSettings } from "../context/SettingsContext";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
 import BrandLogo from "./BrandLogo";
+import { Button } from "./ui/button";
 
 const baseLinks = [
   { to: "/", label: "Home" },
@@ -36,7 +37,7 @@ export const Header = () => {
         <Link to="/" className="flex items-center" data-testid="logo-link">
           <BrandLogo size="md" />
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-4">
           {links.map(l => (
             <NavLink key={l.to} to={l.to} end={l.to==="/"}
               className={({isActive}) => `link-underline text-sm ${isActive ? "text-[var(--accent)]" : "text-[var(--muted)] hover:text-white"}`}
@@ -45,7 +46,7 @@ export const Header = () => {
             </NavLink>
           ))}
         </nav>
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           {user ? (
             <Link to={dashHref} className="btn-ghost px-4 py-2.5 rounded-full text-sm inline-flex items-center gap-2" data-testid="header-dashboard">
               <LayoutDashboard size={14}/> Dashboard
@@ -57,12 +58,12 @@ export const Header = () => {
           )}
           <Link to={user ? "/challenges" : "/login?next=/challenges"} className="btn-amber px-5 py-2.5 rounded-full text-sm" data-testid="header-cta-start">{settings.hero?.cta_primary || "Start Challenge"}</Link>
         </div>
-        <button className="md:hidden btn-ghost px-3 py-2 rounded-lg" onClick={()=>setOpen(!open)} data-testid="mobile-menu-toggle">
+        <Button variant="outline" size="icon" className="xl:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={()=>setOpen(!open)} data-testid="mobile-menu-toggle">
           {open ? <X size={18}/> : <Menu size={18}/>}
-        </button>
+        </Button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-[var(--border)] glass">
+        <div className="xl:hidden border-t border-[var(--border)] glass">
           <div className="container-xl py-3 flex flex-col gap-2">
             {links.map(l => (
               <Link key={l.to} to={l.to} onClick={()=>setOpen(false)}
