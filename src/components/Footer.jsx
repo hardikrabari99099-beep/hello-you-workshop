@@ -53,7 +53,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="container-xl mt-12 pt-6 border-t border-[var(--border)] flex flex-col md:flex-row justify-between gap-3 text-xs text-[var(--muted-2)]">
-        <div>© 2025 {b.name}. All rights reserved.</div>
+        <div>© 2026 {b.name}. All rights reserved.</div>
         <div className="flex flex-wrap gap-4"><Link to="/privacy" className="hover:text-white">Privacy</Link><Link to="/terms" className="hover:text-white">Terms</Link><Link to="/refund-policy" className="hover:text-white">Refunds</Link><Link to="/risk-disclosure" className="hover:text-white">Risk</Link></div>
         <div>Trading involves risk. {b.name} provides simulated/funded accounts under profit-share agreements.</div>
       </div>

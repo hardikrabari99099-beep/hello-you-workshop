@@ -14,7 +14,7 @@ export default function Layout() {
   const w = settings.widgets || {};
   return (
     <div className="min-h-screen flex flex-col grain relative">
-      <PageBg3D />
+      {loc.pathname !== "/" && <PageBg3D />}
       {w.scroll_progress?.enabled !== false && <ScrollProgress />}
       <AnnouncementBar />
       <Header />

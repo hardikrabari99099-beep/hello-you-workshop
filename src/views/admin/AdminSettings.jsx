@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { api, formatApiError } from "../../lib/api";
 import { toast } from "sonner";
+import { Button } from "../../components/ui/button";
+import { getReviewMedia } from "../../lib/review-media";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Textarea } from "../../components/ui/textarea";
@@ -21,6 +23,7 @@ export default function AdminSettings() {
 
   const set = (path, value) => setS(prev => setDeep(prev, path, value));
   const save = async () => {
+    if ((s.video_reviews?.items || []).some(item => item.enabled !== false && !getReviewMedia(item.url || ""))) { toast.error("Each enabled review needs a valid HTTPS MP4, WebM, YouTube or Vimeo link."); return; }
     setSaving(true);
     try { await api.put("/settings", s); toast.success("Settings saved"); reload(); }
     catch (e) { toast.error(formatApiError(e.response?.data?.detail)); }
@@ -50,6 +53,8 @@ export default function AdminSettings() {
           <T v="counter" icon={<HomeIcon size={14}/>}>Live Counter</T>
           <T v="benefits" icon={<HomeIcon size={14}/>}>Benefits</T>
           <T v="payouts" icon={<HomeIcon size={14}/>}>Payouts</T>
+          <T v="homepage" icon={<HomeIcon size={14}/>}>Homepage</T>
+          <T v="videos" icon={<MessageSquare size={14}/>}>Review Videos</T>
           <T v="testi" icon={<MessageSquare size={14}/>}>Testimonials</T>
           <T v="faq" icon={<HelpCircle size={14}/>}>FAQ</T>
           <T v="rules" icon={<BookOpen size={14}/>}>Rules</T>
@@ -303,6 +308,24 @@ export default function AdminSettings() {
           </Section>
         </TabsContent>
 
+        <TabsContent value="homepage">
+          <Section title="Homepage sections">
+            <div className="grid sm:grid-cols-2 gap-4">{Object.entries({ plans: "Challenge plans", payouts: "Payout certificates & weekly payouts", reviews: "Client reviews", steps: "How it works", benefits: "Trading experience", calculator: "Profit calculator", community: "Community", blogs: "Latest articles", faq: "Frequently asked questions", support: "Support" }).map(([key, label]) => <label key={key} className="flex gap-3 items-center"><input type="checkbox" checked={s.home_sections?.[key] !== false} onChange={e => set(`home_sections.${key}`, e.target.checked)} />{label}</label>)}</div>
+          </Section>
+        </TabsContent>
+        <TabsContent value="videos">
+          <Section title="Client video reviews">
+            <label className="flex items-center gap-3"><input type="checkbox" checked={s.video_reviews?.enabled !== false} onChange={e => set("video_reviews.enabled", e.target.checked)} />Show client reviews</label>
+            <Grid2><F label="Heading"><Input value={s.video_reviews?.heading || ""} onChange={e => set("video_reviews.heading", e.target.value)} className={inputCls} /></F><F label="Subtitle"><Input value={s.video_reviews?.subtitle || ""} onChange={e => set("video_reviews.subtitle", e.target.value)} className={inputCls} /></F></Grid2>
+            <p className="text-sm text-muted-foreground">Add your permissioned trader videos using HTTPS MP4/WebM, YouTube or Vimeo links. Videos appear after saving; an empty video list is hidden. The cards scroll automatically and pause during playback.</p>
+            <ListEditor items={s.video_reviews?.items || []} onChange={items => set("video_reviews.items", items)} empty={{ name: "", role: "", label: "Trader review", url: "", poster: "", enabled: true }} addLabel="Add video review" render={(item, update) => <>
+              <Grid2><F label="Trader name"><Input aria-label="Review trader name" value={item.name || ""} onChange={e => update({ ...item, name: e.target.value })} className={inputCls} /></F><F label="Plan or location"><Input aria-label="Review plan or location" value={item.role || ""} onChange={e => update({ ...item, role: e.target.value })} className={inputCls} /></F></Grid2>
+              <F label="Video URL"><Input aria-label="Review video URL" value={item.url || ""} onChange={e => update({ ...item, url: e.target.value })} className={inputCls} placeholder="https://..." /></F>
+              <Grid2><F label="Poster image URL (optional)"><Input aria-label="Review poster URL" value={item.poster || ""} onChange={e => update({ ...item, poster: e.target.value })} className={inputCls} /></F><F label="Video caption"><Input value={item.label || ""} onChange={e => update({ ...item, label: e.target.value })} className={inputCls} /></F></Grid2>
+              <label className="flex gap-3 items-center"><input type="checkbox" checked={item.enabled !== false} onChange={e => update({ ...item, enabled: e.target.checked })} />Publish this review</label>
+            </>} />
+          </Section>
+        </TabsContent>
         <TabsContent value="testi">
           <Section title="Testimonials (Why traders choose …)">
             <ListEditor
@@ -447,7 +470,7 @@ function ListEditor({ items = [], onChange, render, empty, addLabel = "Add item"
           <div className="space-y-3">{render(it, v => upd(i, v))}</div>
         </div>
       ))}
-      <button onClick={add} className="btn-ghost rounded-full px-4 py-2 text-xs inline-flex items-center gap-2"><Plus size={12}/> {addLabel}</button>
+      <Button variant="outline" onClick={add}><Plus size={12}/> {addLabel}</Button>
     </div>
   );
 }
