@@ -1,0 +1,10 @@
+[
+ {"capability":"code/pages","source":"CRA frontend","outcome":"migrate","status":"verified","next_action":"none"},
+ {"capability":"schema+server logic","source":"FastAPI + MongoDB","outcome":"migrate","status":"verified","next_action":"none"},
+ {"capability":"records","source":"MongoDB","outcome":"migrate","status":"pending","next_action":"user exports collections as JSON"},
+ {"capability":"auth identities","source":"Mongo users","outcome":"migrate","status":"pending","next_action":"needs users export; first-login password setup"},
+ {"capability":"admin role","source":"users.role","outcome":"migrate","status":"pending","next_action":"owner signs up, then grant admin"},
+ {"capability":"razorpay payments + webhook","source":"Razorpay","outcome":"preserve","status":"pending","next_action":"add RAZORPAY_KEY_ID/SECRET/WEBHOOK_SECRET; repoint webhook URL"},
+ {"capability":"certificate AI reader","source":"Emergent LLM (Gemini)","outcome":"replace with Lovable AI","status":"implemented","next_action":"none"},
+ {"capability":"stripe checkout","source":"Emergent Stripe","outcome":"dropped (unused by pages)","status":"accepted in plan","next_action":"none"}
+]
