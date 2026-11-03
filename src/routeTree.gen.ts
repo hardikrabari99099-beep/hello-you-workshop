@@ -17,14 +17,23 @@ import { Route as SiteAboutRouteImport } from './routes/_site.about'
 import { Route as SiteChallengesRouteImport } from './routes/_site.challenges'
 import { Route as SiteContactRouteImport } from './routes/_site.contact'
 import { Route as SiteFaqRouteImport } from './routes/_site.faq'
+import { Route as SiteForgotPasswordRouteImport } from './routes/_site.forgot-password'
+import { Route as SiteHowItWorksRouteImport } from './routes/_site.how-it-works'
 import { Route as SiteLeaderboardRouteImport } from './routes/_site.leaderboard'
 import { Route as SiteLeagueRouteImport } from './routes/_site.league'
 import { Route as SiteLoginRouteImport } from './routes/_site.login'
 import { Route as SitePayoutRequestRouteImport } from './routes/_site.payout-request'
 import { Route as SitePayoutsRouteImport } from './routes/_site.payouts'
+import { Route as SitePrivacyRouteImport } from './routes/_site.privacy'
 import { Route as SiteReferRouteImport } from './routes/_site.refer'
+import { Route as SiteRefundPolicyRouteImport } from './routes/_site.refund-policy'
+import { Route as SiteResetPasswordRouteImport } from './routes/_site.reset-password'
+import { Route as SiteRiskDisclosureRouteImport } from './routes/_site.risk-disclosure'
 import { Route as SiteRulesRouteImport } from './routes/_site.rules'
+import { Route as SiteTermsRouteImport } from './routes/_site.terms'
 import { Route as SiteToolsRouteImport } from './routes/_site.tools'
+import { Route as SiteTrustRouteImport } from './routes/_site.trust'
+import { Route as SiteVerifyPayoutRouteImport } from './routes/_site.verify-payout'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBlogsRouteImport } from './routes/admin.blogs'
 import { Route as AdminCertificatesRouteImport } from './routes/admin.certificates'
@@ -88,6 +97,16 @@ const SiteFaqRoute = SiteFaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => SiteRoute,
 } as any)
+const SiteForgotPasswordRoute = SiteForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteHowItWorksRoute = SiteHowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => SiteRoute,
+} as any)
 const SiteLeaderboardRoute = SiteLeaderboardRouteImport.update({
   id: '/leaderboard',
   path: '/leaderboard',
@@ -113,9 +132,29 @@ const SitePayoutsRoute = SitePayoutsRouteImport.update({
   path: '/payouts',
   getParentRoute: () => SiteRoute,
 } as any)
+const SitePrivacyRoute = SitePrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => SiteRoute,
+} as any)
 const SiteReferRoute = SiteReferRouteImport.update({
   id: '/refer',
   path: '/refer',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteRefundPolicyRoute = SiteRefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteResetPasswordRoute = SiteResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteRiskDisclosureRoute = SiteRiskDisclosureRouteImport.update({
+  id: '/risk-disclosure',
+  path: '/risk-disclosure',
   getParentRoute: () => SiteRoute,
 } as any)
 const SiteRulesRoute = SiteRulesRouteImport.update({
@@ -123,9 +162,24 @@ const SiteRulesRoute = SiteRulesRouteImport.update({
   path: '/rules',
   getParentRoute: () => SiteRoute,
 } as any)
+const SiteTermsRoute = SiteTermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => SiteRoute,
+} as any)
 const SiteToolsRoute = SiteToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteTrustRoute = SiteTrustRouteImport.update({
+  id: '/trust',
+  path: '/trust',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteVerifyPayoutRoute = SiteVerifyPayoutRouteImport.update({
+  id: '/verify-payout',
+  path: '/verify-payout',
   getParentRoute: () => SiteRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -252,14 +306,23 @@ export interface FileRoutesByFullPath {
   '/challenges': typeof SiteChallengesRoute
   '/contact': typeof SiteContactRoute
   '/faq': typeof SiteFaqRoute
+  '/forgot-password': typeof SiteForgotPasswordRoute
+  '/how-it-works': typeof SiteHowItWorksRoute
   '/leaderboard': typeof SiteLeaderboardRoute
   '/league': typeof SiteLeagueRoute
   '/login': typeof SiteLoginRoute
   '/payout-request': typeof SitePayoutRequestRoute
   '/payouts': typeof SitePayoutsRoute
+  '/privacy': typeof SitePrivacyRoute
   '/refer': typeof SiteReferRoute
+  '/refund-policy': typeof SiteRefundPolicyRoute
+  '/reset-password': typeof SiteResetPasswordRoute
+  '/risk-disclosure': typeof SiteRiskDisclosureRoute
   '/rules': typeof SiteRulesRoute
+  '/terms': typeof SiteTermsRoute
   '/tools': typeof SiteToolsRoute
+  '/trust': typeof SiteTrustRoute
+  '/verify-payout': typeof SiteVerifyPayoutRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -289,14 +352,23 @@ export interface FileRoutesByTo {
   '/challenges': typeof SiteChallengesRoute
   '/contact': typeof SiteContactRoute
   '/faq': typeof SiteFaqRoute
+  '/forgot-password': typeof SiteForgotPasswordRoute
+  '/how-it-works': typeof SiteHowItWorksRoute
   '/leaderboard': typeof SiteLeaderboardRoute
   '/league': typeof SiteLeagueRoute
   '/login': typeof SiteLoginRoute
   '/payout-request': typeof SitePayoutRequestRoute
   '/payouts': typeof SitePayoutsRoute
+  '/privacy': typeof SitePrivacyRoute
   '/refer': typeof SiteReferRoute
+  '/refund-policy': typeof SiteRefundPolicyRoute
+  '/reset-password': typeof SiteResetPasswordRoute
+  '/risk-disclosure': typeof SiteRiskDisclosureRoute
   '/rules': typeof SiteRulesRoute
+  '/terms': typeof SiteTermsRoute
   '/tools': typeof SiteToolsRoute
+  '/trust': typeof SiteTrustRoute
+  '/verify-payout': typeof SiteVerifyPayoutRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -331,14 +403,23 @@ export interface FileRoutesById {
   '/_site/challenges': typeof SiteChallengesRoute
   '/_site/contact': typeof SiteContactRoute
   '/_site/faq': typeof SiteFaqRoute
+  '/_site/forgot-password': typeof SiteForgotPasswordRoute
+  '/_site/how-it-works': typeof SiteHowItWorksRoute
   '/_site/leaderboard': typeof SiteLeaderboardRoute
   '/_site/league': typeof SiteLeagueRoute
   '/_site/login': typeof SiteLoginRoute
   '/_site/payout-request': typeof SitePayoutRequestRoute
   '/_site/payouts': typeof SitePayoutsRoute
+  '/_site/privacy': typeof SitePrivacyRoute
   '/_site/refer': typeof SiteReferRoute
+  '/_site/refund-policy': typeof SiteRefundPolicyRoute
+  '/_site/reset-password': typeof SiteResetPasswordRoute
+  '/_site/risk-disclosure': typeof SiteRiskDisclosureRoute
   '/_site/rules': typeof SiteRulesRoute
+  '/_site/terms': typeof SiteTermsRoute
   '/_site/tools': typeof SiteToolsRoute
+  '/_site/trust': typeof SiteTrustRoute
+  '/_site/verify-payout': typeof SiteVerifyPayoutRoute
   '/admin/blogs': typeof AdminBlogsRoute
   '/admin/certificates': typeof AdminCertificatesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -374,14 +455,23 @@ export interface FileRouteTypes {
     | '/challenges'
     | '/contact'
     | '/faq'
+    | '/forgot-password'
+    | '/how-it-works'
     | '/leaderboard'
     | '/league'
     | '/login'
     | '/payout-request'
     | '/payouts'
+    | '/privacy'
     | '/refer'
+    | '/refund-policy'
+    | '/reset-password'
+    | '/risk-disclosure'
     | '/rules'
+    | '/terms'
     | '/tools'
+    | '/trust'
+    | '/verify-payout'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -411,14 +501,23 @@ export interface FileRouteTypes {
     | '/challenges'
     | '/contact'
     | '/faq'
+    | '/forgot-password'
+    | '/how-it-works'
     | '/leaderboard'
     | '/league'
     | '/login'
     | '/payout-request'
     | '/payouts'
+    | '/privacy'
     | '/refer'
+    | '/refund-policy'
+    | '/reset-password'
+    | '/risk-disclosure'
     | '/rules'
+    | '/terms'
     | '/tools'
+    | '/trust'
+    | '/verify-payout'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -452,14 +551,23 @@ export interface FileRouteTypes {
     | '/_site/challenges'
     | '/_site/contact'
     | '/_site/faq'
+    | '/_site/forgot-password'
+    | '/_site/how-it-works'
     | '/_site/leaderboard'
     | '/_site/league'
     | '/_site/login'
     | '/_site/payout-request'
     | '/_site/payouts'
+    | '/_site/privacy'
     | '/_site/refer'
+    | '/_site/refund-policy'
+    | '/_site/reset-password'
+    | '/_site/risk-disclosure'
     | '/_site/rules'
+    | '/_site/terms'
     | '/_site/tools'
+    | '/_site/trust'
+    | '/_site/verify-payout'
     | '/admin/blogs'
     | '/admin/certificates'
     | '/admin/coupons'
@@ -551,6 +659,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteFaqRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/forgot-password': {
+      id: '/_site/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof SiteForgotPasswordRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/how-it-works': {
+      id: '/_site/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof SiteHowItWorksRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/_site/leaderboard': {
       id: '/_site/leaderboard'
       path: '/leaderboard'
@@ -586,11 +708,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitePayoutsRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/privacy': {
+      id: '/_site/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof SitePrivacyRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/_site/refer': {
       id: '/_site/refer'
       path: '/refer'
       fullPath: '/refer'
       preLoaderRoute: typeof SiteReferRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/refund-policy': {
+      id: '/_site/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof SiteRefundPolicyRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/reset-password': {
+      id: '/_site/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof SiteResetPasswordRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/risk-disclosure': {
+      id: '/_site/risk-disclosure'
+      path: '/risk-disclosure'
+      fullPath: '/risk-disclosure'
+      preLoaderRoute: typeof SiteRiskDisclosureRouteImport
       parentRoute: typeof SiteRoute
     }
     '/_site/rules': {
@@ -600,11 +750,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteRulesRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/terms': {
+      id: '/_site/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof SiteTermsRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/_site/tools': {
       id: '/_site/tools'
       path: '/tools'
       fullPath: '/tools'
       preLoaderRoute: typeof SiteToolsRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/trust': {
+      id: '/_site/trust'
+      path: '/trust'
+      fullPath: '/trust'
+      preLoaderRoute: typeof SiteTrustRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/verify-payout': {
+      id: '/_site/verify-payout'
+      path: '/verify-payout'
+      fullPath: '/verify-payout'
+      preLoaderRoute: typeof SiteVerifyPayoutRouteImport
       parentRoute: typeof SiteRoute
     }
     '/admin/': {
@@ -776,14 +947,23 @@ interface SiteRouteChildren {
   SiteChallengesRoute: typeof SiteChallengesRoute
   SiteContactRoute: typeof SiteContactRoute
   SiteFaqRoute: typeof SiteFaqRoute
+  SiteForgotPasswordRoute: typeof SiteForgotPasswordRoute
+  SiteHowItWorksRoute: typeof SiteHowItWorksRoute
   SiteLeaderboardRoute: typeof SiteLeaderboardRoute
   SiteLeagueRoute: typeof SiteLeagueRoute
   SiteLoginRoute: typeof SiteLoginRoute
   SitePayoutRequestRoute: typeof SitePayoutRequestRoute
   SitePayoutsRoute: typeof SitePayoutsRoute
+  SitePrivacyRoute: typeof SitePrivacyRoute
   SiteReferRoute: typeof SiteReferRoute
+  SiteRefundPolicyRoute: typeof SiteRefundPolicyRoute
+  SiteResetPasswordRoute: typeof SiteResetPasswordRoute
+  SiteRiskDisclosureRoute: typeof SiteRiskDisclosureRoute
   SiteRulesRoute: typeof SiteRulesRoute
+  SiteTermsRoute: typeof SiteTermsRoute
   SiteToolsRoute: typeof SiteToolsRoute
+  SiteTrustRoute: typeof SiteTrustRoute
+  SiteVerifyPayoutRoute: typeof SiteVerifyPayoutRoute
   SiteIndexRoute: typeof SiteIndexRoute
   SiteBlogSlugRoute: typeof SiteBlogSlugRoute
   SiteCheckoutSuccessRoute: typeof SiteCheckoutSuccessRoute
@@ -795,14 +975,23 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteChallengesRoute: SiteChallengesRoute,
   SiteContactRoute: SiteContactRoute,
   SiteFaqRoute: SiteFaqRoute,
+  SiteForgotPasswordRoute: SiteForgotPasswordRoute,
+  SiteHowItWorksRoute: SiteHowItWorksRoute,
   SiteLeaderboardRoute: SiteLeaderboardRoute,
   SiteLeagueRoute: SiteLeagueRoute,
   SiteLoginRoute: SiteLoginRoute,
   SitePayoutRequestRoute: SitePayoutRequestRoute,
   SitePayoutsRoute: SitePayoutsRoute,
+  SitePrivacyRoute: SitePrivacyRoute,
   SiteReferRoute: SiteReferRoute,
+  SiteRefundPolicyRoute: SiteRefundPolicyRoute,
+  SiteResetPasswordRoute: SiteResetPasswordRoute,
+  SiteRiskDisclosureRoute: SiteRiskDisclosureRoute,
   SiteRulesRoute: SiteRulesRoute,
+  SiteTermsRoute: SiteTermsRoute,
   SiteToolsRoute: SiteToolsRoute,
+  SiteTrustRoute: SiteTrustRoute,
+  SiteVerifyPayoutRoute: SiteVerifyPayoutRoute,
   SiteIndexRoute: SiteIndexRoute,
   SiteBlogSlugRoute: SiteBlogSlugRoute,
   SiteCheckoutSuccessRoute: SiteCheckoutSuccessRoute,
