@@ -99,6 +99,7 @@ export default function Login() {
             <input required type="password" value={form.password} onChange={e=>setForm({...form, password: e.target.value})}
                    className="input-dark mt-2" placeholder={isSignup ? "min 6 characters" : "••••••••"}
                    data-testid="auth-password"/>
+            {!isSignup && <Link to="/forgot-password" className="text-xs text-[var(--muted)] hover:text-white mt-2 inline-block">Forgot password?</Link>}
           </div>
           <button disabled={busy} className="btn-amber rounded-full w-full py-3 text-sm inline-flex items-center justify-center gap-2 mt-2" data-testid="auth-submit">
             {busy

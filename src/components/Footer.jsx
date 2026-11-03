@@ -26,6 +26,8 @@ export const Footer = () => {
             <Link to="/about" className="hover:text-white">About</Link>
             <Link to="/blog" className="hover:text-white">Blog</Link>
             <Link to="/contact" className="hover:text-white">Contact</Link>
+            <Link to="/trust" className="hover:text-white">Trust Center</Link>
+            <Link to="/verify-payout" className="hover:text-white">Verify Payout</Link>
           </div>
         </div>
         <div>
@@ -34,6 +36,7 @@ export const Footer = () => {
             <Link to="/challenges" className="hover:text-white">Challenges</Link>
             <Link to="/rules" className="hover:text-white">Rules</Link>
             <Link to="/tools" className="hover:text-white">Trading Tools</Link>
+            <Link to="/how-it-works" className="hover:text-white">How It Works</Link>
             <Link to="/faq" className="hover:text-white">FAQ</Link>
             <Link to="/payout-request" className="hover:text-white">Request Payout</Link>
           </div>
@@ -50,6 +53,7 @@ export const Footer = () => {
       </div>
       <div className="container-xl mt-12 pt-6 border-t border-[var(--border)] flex flex-col md:flex-row justify-between gap-3 text-xs text-[var(--muted-2)]">
         <div>© 2025 {b.name}. All rights reserved.</div>
+        <div className="flex flex-wrap gap-4"><Link to="/privacy" className="hover:text-white">Privacy</Link><Link to="/terms" className="hover:text-white">Terms</Link><Link to="/refund-policy" className="hover:text-white">Refunds</Link><Link to="/risk-disclosure" className="hover:text-white">Risk</Link></div>
         <div>Trading involves risk. {b.name} provides simulated/funded accounts under profit-share agreements.</div>
       </div>
     </footer>
