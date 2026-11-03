@@ -69,8 +69,10 @@ export default function ClientReviews() {
           </Button>)}
         </div>)}
       </div>}
-      {reviews.length > 0 && <div className="review-marquee"><div className="review-marquee-track">
-        {[...reviews, ...reviews, ...reviews, ...reviews].map((item, i) => <article className="review-quote" key={i} aria-hidden={i >= reviews.length ? true : undefined}><div className="flex items-center justify-between"><div className="flex gap-1 text-primary">{Array.from({ length: 5 }, (_, j) => <Star key={j} size={13} fill="currentColor" />)}</div><Quote size={20} className="text-muted-foreground" /></div><blockquote>“{item.q}”</blockquote><div className="review-author"><span className="review-avatar">{(item.a || "T").slice(0, 1)}</span><div><strong>{item.a}</strong><span>{item.r}</span></div></div></article>)}
+      {reviews.length > 0 && <div className="container-xl"><div className="review-wall">
+        {[0, 1, 2].map(col => { const list = reviews.filter((_, i) => i % 3 === col % reviews.length || reviews.length < 3); return <div className={`review-col review-col-${col}`} key={col}><div className="review-col-track">
+          {[...list, ...list, ...list, ...list].map((item, i) => <article className={`review-quote ${(i + col) % 3 === 1 ? "review-quote-accent" : ""}`} key={i} aria-hidden={i >= list.length ? true : undefined}><div className="flex items-center justify-between"><div className="flex gap-1 text-primary">{Array.from({ length: 5 }, (_, j) => <Star key={j} size={13} fill="currentColor" />)}</div><Quote size={20} className="text-muted-foreground" /></div><blockquote>“{item.q}”</blockquote><div className="review-author"><span className="review-avatar">{(item.a || "T").slice(0, 1)}</span><div><strong>{item.a}</strong><span>{item.r}</span></div></div></article>)}
+        </div></div>; })}
       </div></div>}
       <Dialog open={!!active} onOpenChange={value => { if (!value) setActive(null); }}>
         <DialogContent className="max-w-4xl"><DialogTitle>{active?.name || "Trader"}'s review</DialogTitle><DialogDescription>{active?.role || "IndiFunded trading journey"}</DialogDescription>

@@ -11,6 +11,7 @@ import WeeklyHighestPayout from "../components/WeeklyHighestPayout";
 import ProfitCalculator from "../components/ProfitCalculator";
 import { HeroFX, Ticker } from "../components/HeroFX";
 import { useReveal } from "../lib/useReveal";
+import ScrollStatement from "../components/ScrollStatement";
 import { ArrowRight, ShieldCheck, Trophy, Wallet, Target, Clock3, Headphones, Youtube, MessageCircle, TrendingUp, Check, ChevronDown, LayoutDashboard, BookOpen } from "lucide-react";
 
 export default function Home() {
@@ -48,12 +49,13 @@ export default function Home() {
     {show("plans") && <>
       <section data-reveal className="home-band home-plan-intro"><div className="container-xl">
         <div className="home-section-heading"><div><div className="home-eyebrow">Built for Indian markets</div><h2 className="font-display">Your next chapter starts here</h2><p>Find the capital that fits your trading journey.</p></div><Button asChild variant="outline"><Link to="/challenges">Explore challenges <ArrowRight /></Link></Button></div>
-        <div className="home-plan-grid">{plans.map(plan => <article data-reveal className="home-plan-card" key={plan.id}><div className="flex justify-between items-start"><Target className="home-plan-icon" />{plan.popular && <span className="home-plan-badge">Popular choice</span>}</div><h3 className="font-display">{plan.name}</h3><div className="home-plan-size">{formatINR(plan.account_size)}</div><ul>{(plan.features || []).slice(0, 3).map(feature => <li key={feature}><Check />{feature}</li>)}</ul><Button asChild variant="link" className="px-0"><Link to={href}>From {formatINR(plan.challenge_fee)} <ArrowRight /></Link></Button></article>)}</div>
+        <div className="home-plan-grid">{plans.map(plan => <article data-reveal className="home-plan-card" key={plan.id}><div className="flex justify-between items-start"><span className="home-plan-gem" aria-hidden="true"><Target className="home-plan-icon" /></span>{plan.popular && <span className="home-plan-badge">Popular choice</span>}</div><h3 className="font-display">{plan.name}</h3><div className="home-plan-size">{formatINR(plan.account_size)}</div><ul>{(plan.features || []).slice(0, 3).map(feature => <li key={feature}><Check />{feature}</li>)}</ul><Button asChild variant="link" className="px-0"><Link to={href}>From {formatINR(plan.challenge_fee)} <ArrowRight /></Link></Button></article>)}</div>
       </div></section>
       <ChallengePicker plans={plans} href={href} />
     </>}
     {show("payouts") && <div className="home-proof-band"><PayoutCertificates /><WeeklyHighestPayout /></div>}
     {show("reviews") && <ClientReviews />}
+    <ScrollStatement text="Traders return to a system that is clear, fair, and built for Indian markets." />
     {show("steps") && <section data-reveal className="home-band"><div className="container-xl">
       <div className="home-section-heading"><div><div className="home-eyebrow">How it works</div><h2 className="font-display">{settings.steps.title_prefix}<br />{settings.steps.title_suffix}</h2><p>Choose your account. Read the rules. Make your next move.</p></div><Button asChild variant="outline"><Link to="/how-it-works">The full journey <ArrowRight /></Link></Button></div>
       <div className="home-steps">{(settings.steps.items || []).map((step, i) => { const Icon = [Target, ShieldCheck, Trophy][i] || Target; return <div data-reveal className="home-step" key={i}><div className="home-step-top"><span>STEP {step.n}</span><Icon /></div><h3 className="font-display">{step.t}</h3><p>{step.d}</p></div>; })}</div>

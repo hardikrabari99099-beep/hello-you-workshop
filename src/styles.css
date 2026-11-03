@@ -883,3 +883,24 @@ input, textarea, select { color-scheme: dark; }
 .home-feature-art svg { animation: bob 6s ease-in-out infinite; } .home-feature-art svg + svg { animation-delay: -3s; }
 @media (max-width: 900px) { .hero-float { display: none; } .hero-chart { height: 140px; } .review-marquee .review-quote { width: 290px; } }
 @media (prefers-reduced-motion: reduce) { .hero-fx *, .home-ticker-track, .review-marquee-track, .home-hero-inner > *, .home-primary-cta, .home-hero h1 span { animation: none !important; } .hero-line { stroke-dashoffset: 0; } .hero-line-fill { opacity: 1; } }
+
+/* Review wall (vertical scrolling columns) */
+.review-wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; height: 620px; overflow: hidden; mask-image: linear-gradient(transparent, black 12%, black 88%, transparent); }
+.review-col-track { display: flex; flex-direction: column; gap: 18px; animation: wall-up 40s linear infinite; }
+.review-col-1 .review-col-track { animation-direction: reverse; animation-duration: 48s; }
+.review-col-2 .review-col-track { animation-duration: 36s; }
+.review-wall:hover .review-col-track { animation-play-state: paused; }
+@keyframes wall-up { to { transform: translateY(-50%); } }
+.review-quote-accent { background: linear-gradient(160deg, color-mix(in oklab, var(--home-green) 22%, var(--bg)), var(--bg)); border-color: color-mix(in oklab, var(--home-green) 45%, transparent); }
+/* Scroll-lit statement */
+.scroll-statement { padding: 120px 0; }
+.scroll-statement h2 { font-size: clamp(36px, 6vw, 76px); line-height: 1.1; font-weight: 600; text-align: center; max-width: 1100px; margin: 0 auto; }
+.scroll-statement span { color: var(--home-line); transition: color .4s; }
+.scroll-statement span.lit { color: inherit; }
+.scroll-statement span.lit:nth-last-child(-n+3) { color: var(--home-green); }
+/* Glossy plan gem */
+.home-plan-gem { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; background: radial-gradient(circle at 30% 25%, color-mix(in oklab, var(--home-green) 70%, white), var(--home-green) 45%, color-mix(in oklab, var(--home-green) 40%, black)); box-shadow: inset 0 2px 6px rgba(255,255,255,.35), 0 18px 30px -14px var(--home-green); transform: rotate(-8deg); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.home-plan-gem .home-plan-icon { color: var(--bg); width: 30px; height: 30px; }
+.home-plan-card:hover .home-plan-gem { transform: rotate(8deg) scale(1.08); }
+@media (max-width: 900px) { .review-wall { grid-template-columns: 1fr; height: 520px; } .review-col-1, .review-col-2 { display: none; } .scroll-statement { padding: 72px 0; } }
+@media (prefers-reduced-motion: reduce) { .review-col-track { animation: none; } .scroll-statement span { color: inherit; } }
