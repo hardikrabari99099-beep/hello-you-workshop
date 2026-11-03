@@ -194,7 +194,7 @@ function leaderboardFields(b) {
   };
 }
 
-function couponUsable(c) {
+export function couponUsable(c) {
   if (!c || c.active === false) return false;
   if (c.max_uses !== null && c.max_uses !== undefined && (c.used_count || 0) >= c.max_uses) return false;
   if (c.expires_at) {
