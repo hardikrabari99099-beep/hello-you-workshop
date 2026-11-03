@@ -1,34 +1,20 @@
 import axios from "axios";
+import { supabase } from "@/integrations/supabase/client";
 
-export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-export const API = `${BACKEND_URL}/api`;
+// Same-origin API (implemented in src/routes/api/$.ts).
+export const API = "/api";
 
-export const api = axios.create({
-  baseURL: API,
-  withCredentials: false,
-});
+export const api = axios.create({ baseURL: API, withCredentials: false });
 
-// attach bearer token fallback (for preview domains that may strip cookies)
-api.interceptors.request.use((config) => {
-  const t = localStorage.getItem("if_token");
-  if (t) config.headers.Authorization = `Bearer ${t}`;
+// Attach the signed-in user's session token.
+api.interceptors.request.use(async (config) => {
+  if (typeof window !== "undefined") {
+    const { data } = await supabase.auth.getSession();
+    const t = data.session?.access_token;
+    if (t) config.headers.Authorization = `Bearer ${t}`;
+  }
   return config;
 });
-
-// Silently clear a stale token when the server rejects it, so subsequent
-// requests don't repeatedly surface the same 401 to the console.
-api.interceptors.response.use(
-  (r) => r,
-  (err) => {
-    if (err?.response?.status === 401) {
-      const isAuthMe = err?.config?.url?.endsWith("/auth/me");
-      if (isAuthMe && typeof window !== "undefined") {
-        try { localStorage.removeItem("if_token"); } catch { /* ignore */ }
-      }
-    }
-    return Promise.reject(err);
-  }
-);
 
 export function formatApiError(detail) {
   if (detail == null) return "Something went wrong.";
