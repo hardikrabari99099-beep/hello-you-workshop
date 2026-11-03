@@ -15,3 +15,5 @@
 - All app data calls go through axios `api` (`src/lib/api.js`) to the catch-all server route `src/routes/api/$.ts`, which dispatches to `src/server/api-handler.js` (port of the old FastAPI backend); keeps the old endpoint contract, including `/api/webhooks/razorpay`.
 - Data is stored as JSON documents in `public.docs` (collection + id), accessed only server-side with the service role; RLS has no client policies by design.
 - Admin access comes only from `public.user_roles` (role `admin`), checked server-side per request.
+- Homepage section visibility and curated review videos use the existing site-settings document and admin editor; no parallel CMS, so content saves keep the established permissions and persistence path.
+- Review-media parsing lives in a shared browser-safe module; only validated HTTPS video/provider links render, so arbitrary URLs never become executable player sources.
