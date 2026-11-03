@@ -507,6 +507,23 @@ async function route(request, path) {
     return json({ ok: true });
   }
 
+  // Public trust stats + payout verification (no private fields returned)
+  if (is("GET", "/public/stats")) {
+    const [users, certs, payouts] = await Promise.all([db.all("users"), db.all("certificates"), db.all("payout_requests")]);
+    return json({
+      traders: users.length,
+      certificates: certs.filter((c) => c.visible).length,
+      payouts: payouts.filter((x) => ["paid", "approved", "completed"].includes(str(x.status).toLowerCase())).length + certs.filter((c) => c.visible).length,
+    });
+  }
+  if (is("GET", "/public/verify-payout")) {
+    const q = str(url.searchParams.get("q")).trim().toLowerCase().slice(0, 100);
+    if (q.length < 3) fail(404, "Not found");
+    const hits = (await db.all("certificates")).filter((c) => c.visible && (str(c.id).toLowerCase() === q || str(c.trader_name).toLowerCase().includes(q)));
+    if (!hits.length) fail(404, "Not found");
+    return json(hits.slice(0, 20).map((c) => ({ id: c.id, trader_name: c.trader_name, amount: c.amount, date: c.payout_date })));
+  }
+
   // Certificates
   if (is("GET", "/certificates")) return json((await db.all("certificates")).filter((c) => c.visible).sort(byNum("order")));
   if (is("GET", "/certificates/all")) {
