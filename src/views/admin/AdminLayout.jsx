@@ -16,6 +16,7 @@ const links = [
   { to: "/admin/referrals", label: "Referrals", icon: <Gift size={16}/>},
   { to: "/admin/payouts", label: "Payouts", icon: <Wallet size={16}/>},
   { to: "/admin/leads", label: "Leads", icon: <Users size={16}/>},
+  { to: "/admin/stories", label: "Trader Stories", icon: <Award size={16}/>},
   { to: "/admin/orders", label: "Orders", icon: <ShoppingBag size={16}/>},
   { to: "/admin/league", label: "Trader League", icon: <Trophy size={16}/>},
   { to: "/admin/users", label: "Users", icon: <Users size={16}/>},

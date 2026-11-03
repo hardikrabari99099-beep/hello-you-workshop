@@ -507,6 +507,41 @@ async function route(request, path) {
     return json({ ok: true });
   }
 
+  // Trader stories: signed-in traders submit, admin approves, public sees approved only
+  if (is("GET", "/stories")) {
+    const all = (await db.all("stories")).filter((s) => s.status === "approved").sort(byDesc("created_at"));
+    return json(all.map(({ email, ...rest }) => rest));
+  }
+  if (is("POST", "/stories")) {
+    const user = await currentUser();
+    const b = await body();
+    const story = str(b.story).trim().slice(0, 2000);
+    if (story.length < 20) fail(422, "Story must be at least 20 characters");
+    const rating = Math.min(5, Math.max(1, int(b.rating) || 5));
+    return json(await db.put("stories", {
+      id: uuid(), name: str(b.name || user.name).slice(0, 80), city: str(b.city).slice(0, 60),
+      title: str(b.title).slice(0, 120), story, rating, video_url: str(b.video_url).slice(0, 300),
+      payout_amount: num(b.payout_amount), email: user.email, status: "pending", created_at: now(),
+    }));
+  }
+  if (is("GET", "/admin/stories")) {
+    await currentAdmin();
+    return json((await db.all("stories")).sort(byDesc("created_at")));
+  }
+  if ((p = is("PUT", "/admin/stories/:id"))) {
+    await currentAdmin();
+    const old = await db.get("stories", p.id);
+    if (!old) fail(404, "Not found");
+    const st = str((await body()).status);
+    if (!["approved", "rejected", "pending"].includes(st)) fail(422, "Invalid status");
+    return json(await db.put("stories", { ...old, status: st }));
+  }
+  if ((p = is("DELETE", "/admin/stories/:id"))) {
+    await currentAdmin();
+    await db.del("stories", p.id);
+    return json({ ok: true });
+  }
+
   // Public trust stats + payout verification (no private fields returned)
   if (is("GET", "/public/stats")) {
     const [users, certs, payouts] = await Promise.all([db.all("users"), db.all("certificates"), db.all("payout_requests")]);

@@ -37,6 +37,7 @@ export const Footer = () => {
             <Link to="/rules" className="hover:text-white">Rules</Link>
             <Link to="/tools" className="hover:text-white">Trading Tools</Link>
             <Link to="/how-it-works" className="hover:text-white">How It Works</Link>
+            <Link to="/stories" className="hover:text-white">Trader Stories</Link>
             <Link to="/faq" className="hover:text-white">FAQ</Link>
             <Link to="/payout-request" className="hover:text-white">Request Payout</Link>
           </div>

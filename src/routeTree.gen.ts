@@ -30,6 +30,7 @@ import { Route as SiteRefundPolicyRouteImport } from './routes/_site.refund-poli
 import { Route as SiteResetPasswordRouteImport } from './routes/_site.reset-password'
 import { Route as SiteRiskDisclosureRouteImport } from './routes/_site.risk-disclosure'
 import { Route as SiteRulesRouteImport } from './routes/_site.rules'
+import { Route as SiteStoriesRouteImport } from './routes/_site.stories'
 import { Route as SiteTermsRouteImport } from './routes/_site.terms'
 import { Route as SiteToolsRouteImport } from './routes/_site.tools'
 import { Route as SiteTrustRouteImport } from './routes/_site.trust'
@@ -46,6 +47,7 @@ import { Route as AdminPayoutsRouteImport } from './routes/admin.payouts'
 import { Route as AdminPlansRouteImport } from './routes/admin.plans'
 import { Route as AdminReferralsRouteImport } from './routes/admin.referrals'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminStoriesRouteImport } from './routes/admin.stories'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminWeeklyPayoutsRouteImport } from './routes/admin.weekly-payouts'
 import { Route as ApiSplatRouteImport } from './routes/api/$'
@@ -162,6 +164,11 @@ const SiteRulesRoute = SiteRulesRouteImport.update({
   path: '/rules',
   getParentRoute: () => SiteRoute,
 } as any)
+const SiteStoriesRoute = SiteStoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
+  getParentRoute: () => SiteRoute,
+} as any)
 const SiteTermsRoute = SiteTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -242,6 +249,11 @@ const AdminSettingsRoute = AdminSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminStoriesRoute = AdminStoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -319,6 +331,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof SiteResetPasswordRoute
   '/risk-disclosure': typeof SiteRiskDisclosureRoute
   '/rules': typeof SiteRulesRoute
+  '/stories': typeof SiteStoriesRoute
   '/terms': typeof SiteTermsRoute
   '/tools': typeof SiteToolsRoute
   '/trust': typeof SiteTrustRoute
@@ -334,6 +347,7 @@ export interface FileRoutesByFullPath {
   '/admin/plans': typeof AdminPlansRoute
   '/admin/referrals': typeof AdminReferralsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/stories': typeof AdminStoriesRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
@@ -365,6 +379,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof SiteResetPasswordRoute
   '/risk-disclosure': typeof SiteRiskDisclosureRoute
   '/rules': typeof SiteRulesRoute
+  '/stories': typeof SiteStoriesRoute
   '/terms': typeof SiteTermsRoute
   '/tools': typeof SiteToolsRoute
   '/trust': typeof SiteTrustRoute
@@ -380,6 +395,7 @@ export interface FileRoutesByTo {
   '/admin/plans': typeof AdminPlansRoute
   '/admin/referrals': typeof AdminReferralsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/stories': typeof AdminStoriesRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
@@ -416,6 +432,7 @@ export interface FileRoutesById {
   '/_site/reset-password': typeof SiteResetPasswordRoute
   '/_site/risk-disclosure': typeof SiteRiskDisclosureRoute
   '/_site/rules': typeof SiteRulesRoute
+  '/_site/stories': typeof SiteStoriesRoute
   '/_site/terms': typeof SiteTermsRoute
   '/_site/tools': typeof SiteToolsRoute
   '/_site/trust': typeof SiteTrustRoute
@@ -431,6 +448,7 @@ export interface FileRoutesById {
   '/admin/plans': typeof AdminPlansRoute
   '/admin/referrals': typeof AdminReferralsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/stories': typeof AdminStoriesRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/weekly-payouts': typeof AdminWeeklyPayoutsRoute
   '/api/$': typeof ApiSplatRoute
@@ -468,6 +486,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/risk-disclosure'
     | '/rules'
+    | '/stories'
     | '/terms'
     | '/tools'
     | '/trust'
@@ -483,6 +502,7 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/admin/referrals'
     | '/admin/settings'
+    | '/admin/stories'
     | '/admin/users'
     | '/admin/weekly-payouts'
     | '/api/$'
@@ -514,6 +534,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/risk-disclosure'
     | '/rules'
+    | '/stories'
     | '/terms'
     | '/tools'
     | '/trust'
@@ -529,6 +550,7 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/admin/referrals'
     | '/admin/settings'
+    | '/admin/stories'
     | '/admin/users'
     | '/admin/weekly-payouts'
     | '/api/$'
@@ -564,6 +586,7 @@ export interface FileRouteTypes {
     | '/_site/reset-password'
     | '/_site/risk-disclosure'
     | '/_site/rules'
+    | '/_site/stories'
     | '/_site/terms'
     | '/_site/tools'
     | '/_site/trust'
@@ -579,6 +602,7 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/admin/referrals'
     | '/admin/settings'
+    | '/admin/stories'
     | '/admin/users'
     | '/admin/weekly-payouts'
     | '/api/$'
@@ -750,6 +774,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteRulesRouteImport
       parentRoute: typeof SiteRoute
     }
+    '/_site/stories': {
+      id: '/_site/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof SiteStoriesRouteImport
+      parentRoute: typeof SiteRoute
+    }
     '/_site/terms': {
       id: '/_site/terms'
       path: '/terms'
@@ -862,6 +893,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSettingsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/stories': {
+      id: '/admin/stories'
+      path: '/stories'
+      fullPath: '/admin/stories'
+      preLoaderRoute: typeof AdminStoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/users'
@@ -960,6 +998,7 @@ interface SiteRouteChildren {
   SiteResetPasswordRoute: typeof SiteResetPasswordRoute
   SiteRiskDisclosureRoute: typeof SiteRiskDisclosureRoute
   SiteRulesRoute: typeof SiteRulesRoute
+  SiteStoriesRoute: typeof SiteStoriesRoute
   SiteTermsRoute: typeof SiteTermsRoute
   SiteToolsRoute: typeof SiteToolsRoute
   SiteTrustRoute: typeof SiteTrustRoute
@@ -988,6 +1027,7 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteResetPasswordRoute: SiteResetPasswordRoute,
   SiteRiskDisclosureRoute: SiteRiskDisclosureRoute,
   SiteRulesRoute: SiteRulesRoute,
+  SiteStoriesRoute: SiteStoriesRoute,
   SiteTermsRoute: SiteTermsRoute,
   SiteToolsRoute: SiteToolsRoute,
   SiteTrustRoute: SiteTrustRoute,
@@ -1012,6 +1052,7 @@ interface AdminRouteChildren {
   AdminPlansRoute: typeof AdminPlansRoute
   AdminReferralsRoute: typeof AdminReferralsRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminStoriesRoute: typeof AdminStoriesRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminWeeklyPayoutsRoute: typeof AdminWeeklyPayoutsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -1029,6 +1070,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminPlansRoute: AdminPlansRoute,
   AdminReferralsRoute: AdminReferralsRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminStoriesRoute: AdminStoriesRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminWeeklyPayoutsRoute: AdminWeeklyPayoutsRoute,
   AdminIndexRoute: AdminIndexRoute,
