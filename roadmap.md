@@ -1,8 +1,9 @@
 # IndiFunded roadmap (from feature spec)
 - [x] Public: How It Works, Trust Center, Verify Payout, Privacy/Terms/Refund/Risk, Forgot/Reset password
 - [x] Original green theme kept; Trader Stories with admin approval
-- [ ] FundedNext-inspired complete homepage refresh (keep original green, logo and IndiFunded offerings)
-- [ ] Admin-managed auto-scrolling video reviews and homepage section controls
+- [x] FundedNext-inspired complete homepage refresh (keep original green, logo and IndiFunded offerings)
+- [x] Admin-managed auto-scrolling video reviews and homepage section controls
+- [ ] Real client video content (blocked: owner needs to add permissioned video links in Admin → Site Settings → Review Videos)
 - [ ] Public: Support Center, per-challenge detail pages
 - [ ] Challenge automation: account ID/credentials, email delivery, progress + pass/fail evaluation
 - [ ] Trader dashboard: terminal, trade book, positions, risk management
